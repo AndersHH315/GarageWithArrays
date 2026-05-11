@@ -16,6 +16,7 @@ namespace Garage
                 spots = Console.ReadLine();
             }
             Garage garage = new(int.Parse(spots));
+            garage.AddSomeVehicles(garage.Vehicles);
             do
             {
                 showMenu.MainMenu();

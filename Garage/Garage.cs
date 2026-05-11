@@ -41,6 +41,35 @@ namespace Garage
             Vehicles = new Vehicle[_arraySpots];
         }
 
+        public Vehicle[] AddSomeVehicles(Vehicle[] vehicles)
+        {
+            if(Vehicles.Length > 8)
+            {
+                Console.WriteLine("Do you want to add some vehicles to the garage? (y/n)");
+                string? addVehicles = Console.ReadLine();
+                while (addVehicles != "y" && addVehicles != "n")
+                {
+                    Console.WriteLine("Invalid input! Please enter 'y' or 'n'");
+                    addVehicles = Console.ReadLine();
+                }
+                if(addVehicles == "y")
+                {
+                    Vehicles[0] = new Car("ABC123", ColourType.Red, FuelType.Gasoline);
+                    Vehicles[1] = new Motorcycle("DEF456", ColourType.Blue, 2);
+                    Vehicles[2] = new Boat("GHI789", ColourType.Green, 10);
+                    Vehicles[3] = new Bus("JKL012", ColourType.Yellow, 50);
+                    Vehicles[4] = new Airplane("MNO345", ColourType.Orange, 2);
+                    Console.WriteLine("5 vehicles added to the garage!");
+                    ShowVehicles();
+                    return Vehicles;     
+                }
+                else
+                    Console.WriteLine("Okay, no vehicles will be added to the garage!");
+                    return Vehicles;
+            }
+            return Vehicles;
+        }
+
 
         public Vehicle[] AddNewVehicle()
         {
@@ -57,6 +86,7 @@ namespace Garage
                 if(Vehicles[i] == null)
                 {
                     Vehicles[i] = ChooseVehicle(choice);
+                    Console.WriteLine("Vehicle added to spot " + i);
                     return Vehicles;
                                         
                 }
@@ -67,6 +97,7 @@ namespace Garage
                     Array.Copy(Vehicles, newVehicles, Vehicles.Length);
                     Vehicles = newVehicles;
                     Vehicles[_arraySpots - 1] = ChooseVehicle(choice);
+                    Console.WriteLine("Vehicle added to spot " + (_arraySpots - 1));
                     return Vehicles; 
                 }
             }
@@ -79,7 +110,8 @@ namespace Garage
             if(int.TryParse(removeVehicle, out int result))
                 if(Vehicles[result] != null)
                 {
-                    Vehicles[result] = null;                    
+                    Vehicles[result] = null;
+                    Console.WriteLine("Vehicle removed from spot " + result);                    
                 }
                 else
                     Console.WriteLine("The spot is already empty!");
