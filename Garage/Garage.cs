@@ -43,7 +43,7 @@ namespace Garage
 
         public Vehicle[] AddSomeVehicles(Vehicle[] vehicles)
         {
-            if(Vehicles.Length > 8)
+            if(vehicles.Length > 8)
             {
                 Console.WriteLine("Do you want to add some vehicles to the garage? (y/n)");
                 string? addVehicles = Console.ReadLine();
@@ -54,20 +54,20 @@ namespace Garage
                 }
                 if(addVehicles == "y")
                 {
-                    Vehicles[0] = new Car("ABC123", ColourType.Red, FuelType.Gasoline);
-                    Vehicles[1] = new Motorcycle("DEF456", ColourType.Blue, 2);
-                    Vehicles[2] = new Boat("GHI789", ColourType.Green, 10);
-                    Vehicles[3] = new Bus("JKL012", ColourType.Yellow, 50);
-                    Vehicles[4] = new Airplane("MNO345", ColourType.Orange, 2);
+                    vehicles[0] = new Car("ABC123", ColourType.Red, FuelType.Gasoline);
+                    vehicles[1] = new Motorcycle("DEF456", ColourType.Blue, 2);
+                    vehicles[2] = new Boat("GHI789", ColourType.Green, 10);
+                    vehicles[3] = new Bus("JKL012", ColourType.Yellow, 50);
+                    vehicles[4] = new Airplane("MNO345", ColourType.Orange, 2);
                     Console.WriteLine("5 vehicles added to the garage!");
                     ShowVehicles();
-                    return Vehicles;     
+                    return vehicles;     
                 }
                 else
                     Console.WriteLine("Okay, no vehicles will be added to the garage!");
-                    return Vehicles;
+                    return vehicles;
             }
-            return Vehicles;
+            return vehicles;
         }
 
 
@@ -173,11 +173,11 @@ namespace Garage
                     {
                         for (int j = 0; j < split.Length; j++)
                         {
-                            if(Vehicles[i].RegisterNumber.Contains(split[j], StringComparison.OrdinalIgnoreCase))
+                            if(search.Contains("car", StringComparison.OrdinalIgnoreCase) && Vehicles[i].ColourType.ToString().Contains(split[j], StringComparison.OrdinalIgnoreCase))
                                 searchResult[i] = Vehicles[i];
                             else if(Vehicles[i].ColourType.ToString().Contains(split[j], StringComparison.OrdinalIgnoreCase))
                                 searchResult[i] = Vehicles[i];
-                            else if(search.Contains("car", StringComparison.OrdinalIgnoreCase))
+                            else if(Vehicles[i].RegisterNumber.Contains(split[j], StringComparison.OrdinalIgnoreCase))
                                 searchResult[i] = Vehicles[i];
                         }
                     }
@@ -185,11 +185,11 @@ namespace Garage
                     {
                         for (int j = 0; j < split.Length; j++)
                         {
-                            if(Vehicles[i].RegisterNumber.Contains(split[j], StringComparison.OrdinalIgnoreCase))
+                            if(search.Contains("motorcycle", StringComparison.OrdinalIgnoreCase) && Vehicles[i].ColourType.ToString().Contains(split[j], StringComparison.OrdinalIgnoreCase))
                                 searchResult[i] = Vehicles[i];
                             else if(Vehicles[i].ColourType.ToString().Contains(split[j], StringComparison.OrdinalIgnoreCase))
                                 searchResult[i] = Vehicles[i];
-                            else if(search.Contains("motorcycle", StringComparison.OrdinalIgnoreCase))
+                            else if(Vehicles[i].RegisterNumber.Contains(split[j], StringComparison.OrdinalIgnoreCase))
                                 searchResult[i] = Vehicles[i];                            
                         }
                     }
@@ -197,11 +197,11 @@ namespace Garage
                     {
                         for (int j = 0; j < split.Length; j++)
                         {
-                            if(Vehicles[i].RegisterNumber.Contains(split[j], StringComparison.OrdinalIgnoreCase))
+                            if(search.Contains("boat", StringComparison.OrdinalIgnoreCase) && Vehicles[i].RegisterNumber.Contains(split[j], StringComparison.OrdinalIgnoreCase))
                                 searchResult[i] = Vehicles[i];
                             else if(Vehicles[i].ColourType.ToString().Contains(split[j], StringComparison.OrdinalIgnoreCase))
                                 searchResult[i] = Vehicles[i];
-                            else if(search.Contains("boat", StringComparison.OrdinalIgnoreCase))
+                            else if(Vehicles[i].RegisterNumber.Contains(split[j], StringComparison.OrdinalIgnoreCase))
                                 searchResult[i] = Vehicles[i];                          
                         }
                     }
@@ -209,11 +209,11 @@ namespace Garage
                     {
                         for (int j = 0; j < split.Length; j++)
                         {
-                            if(Vehicles[i].RegisterNumber.Contains(split[j], StringComparison.OrdinalIgnoreCase))
+                            if(search.Contains("bus", StringComparison.OrdinalIgnoreCase) && Vehicles[i].RegisterNumber.Contains(split[j], StringComparison.OrdinalIgnoreCase))
                                 searchResult[i] = Vehicles[i];
                             else if(Vehicles[i].ColourType.ToString().Contains(split[j], StringComparison.OrdinalIgnoreCase))
                                 searchResult[i] = Vehicles[i];
-                            else if(search.Contains("bus", StringComparison.OrdinalIgnoreCase))
+                            else if(Vehicles[i].RegisterNumber.Contains(split[j], StringComparison.OrdinalIgnoreCase))
                                 searchResult[i] = Vehicles[i];                            
                         }
                     }
@@ -221,11 +221,11 @@ namespace Garage
                     {
                         for (int j = 0; j < split.Length; j++)
                         {
-                            if(Vehicles[i].RegisterNumber.Contains(split[j], StringComparison.OrdinalIgnoreCase))
+                            if(search.Contains("airplane", StringComparison.OrdinalIgnoreCase) && Vehicles[i].RegisterNumber.Contains(split[j], StringComparison.OrdinalIgnoreCase))
                                 searchResult[i] = Vehicles[i];
                             else if(Vehicles[i].ColourType.ToString().Contains(split[j], StringComparison.OrdinalIgnoreCase))
                                 searchResult[i] = Vehicles[i];
-                            else if(search.Contains("airplane", StringComparison.OrdinalIgnoreCase))
+                            else if(Vehicles[i].RegisterNumber.Contains(split[j], StringComparison.OrdinalIgnoreCase))
                                 searchResult[i] = Vehicles[i];                            
                         }
                     }
