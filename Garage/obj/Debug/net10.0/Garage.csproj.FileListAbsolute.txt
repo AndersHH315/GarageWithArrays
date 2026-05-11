@@ -1,0 +1,14 @@
+C:\Users\Ander\Github\C#-Projects\Garage\Garage\bin\Debug\net10.0\Garage.exe
+C:\Users\Ander\Github\C#-Projects\Garage\Garage\bin\Debug\net10.0\Garage.deps.json
+C:\Users\Ander\Github\C#-Projects\Garage\Garage\bin\Debug\net10.0\Garage.runtimeconfig.json
+C:\Users\Ander\Github\C#-Projects\Garage\Garage\bin\Debug\net10.0\Garage.dll
+C:\Users\Ander\Github\C#-Projects\Garage\Garage\bin\Debug\net10.0\Garage.pdb
+C:\Users\Ander\Github\C#-Projects\Garage\Garage\obj\Debug\net10.0\Garage.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Ander\Github\C#-Projects\Garage\Garage\obj\Debug\net10.0\Garage.AssemblyInfoInputs.cache
+C:\Users\Ander\Github\C#-Projects\Garage\Garage\obj\Debug\net10.0\Garage.AssemblyInfo.cs
+C:\Users\Ander\Github\C#-Projects\Garage\Garage\obj\Debug\net10.0\Garage.csproj.CoreCompileInputs.cache
+C:\Users\Ander\Github\C#-Projects\Garage\Garage\obj\Debug\net10.0\Garage.dll
+C:\Users\Ander\Github\C#-Projects\Garage\Garage\obj\Debug\net10.0\refint\Garage.dll
+C:\Users\Ander\Github\C#-Projects\Garage\Garage\obj\Debug\net10.0\Garage.pdb
+C:\Users\Ander\Github\C#-Projects\Garage\Garage\obj\Debug\net10.0\Garage.genruntimeconfig.cache
+C:\Users\Ander\Github\C#-Projects\Garage\Garage\obj\Debug\net10.0\ref\Garage.dll
