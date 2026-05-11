@@ -1,4 +1,3 @@
-using System;
 using Garage.VehicleType.VehicleParts;
 
 namespace Garage.VehicleType

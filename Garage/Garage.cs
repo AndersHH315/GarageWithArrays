@@ -1,11 +1,5 @@
 using System;
-using System.Drawing;
-using System.IO;
 using System.Linq;
-using System.Linq.Expressions;
-using System.Net.Cache;
-using System.Reflection;
-using System.Xml;
 using Garage.VehicleType;
 using Garage.VehicleType.VehicleParts;
 
@@ -13,7 +7,7 @@ namespace Garage
 {
     public class Garage
     {
-        private Vehicle[] _vehicles;
+        private Vehicle[] _vehicles = new Vehicle[0];
         private int _arraySpots;
         Menu showMenu = new();
         string? input = "";
@@ -75,7 +69,7 @@ namespace Garage
         {
             showMenu.VehicleMenu();
             input = Console.ReadLine();
-            while (!int.TryParse(input, out int result))
+            while (!int.TryParse(input, out int result) && result < 1 || result > 5)
             {
                 Console.WriteLine("Wrong input! Type a number between 1-5!");
                 input = Console.ReadLine();
@@ -239,7 +233,7 @@ namespace Garage
             Vehicle[] searchResults = new Vehicle[_arraySpots];
             showMenu.SearchMenu();
             input = Console.ReadLine();
-            while (!int.TryParse(input, out int result))
+            while (!int.TryParse(input, out int result) && result < 1 || result > 3)
             {
                 Console.WriteLine("Wrong input! Type a number between 1-3");
                 input = Console.ReadLine();
@@ -274,7 +268,7 @@ namespace Garage
             ColourType colour = Colour();
             showMenu.FuelMenu();
             input = Console.ReadLine();
-            while (!int.TryParse(input, out int result))
+            while (!int.TryParse(input, out int result) && result < 1 || result > 3)
             {
                 Console.WriteLine("Choose a fuel type between 1-3");
                 input = Console.ReadLine();
@@ -413,7 +407,7 @@ namespace Garage
         {
             showMenu.ColourMenu();
             input = Console.ReadLine();
-            while (!int.TryParse(input, out int result))
+            while (!int.TryParse(input, out int result) && result < 1 || result > 7)
             {
                 Console.WriteLine("Type a number between 1-7!");
                 input = Console.ReadLine();
