@@ -8,11 +8,11 @@ namespace Garage.VehicleType
     {
         private string? _registerNumber;
         private ColourType _colourType;
-        public string? RegisterNumber
+        public string RegisterNumber
         {
             get { return _registerNumber; }
             set
-            {               
+            {                
                 _registerNumber = value;
             }
         }

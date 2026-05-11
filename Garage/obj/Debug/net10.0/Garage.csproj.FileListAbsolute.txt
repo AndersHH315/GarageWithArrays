@@ -12,3 +12,4 @@ C:\Users\Ander\Github\C#-Projects\Garage\Garage\obj\Debug\net10.0\refint\Garage.
 C:\Users\Ander\Github\C#-Projects\Garage\Garage\obj\Debug\net10.0\Garage.pdb
 C:\Users\Ander\Github\C#-Projects\Garage\Garage\obj\Debug\net10.0\Garage.genruntimeconfig.cache
 C:\Users\Ander\Github\C#-Projects\Garage\Garage\obj\Debug\net10.0\ref\Garage.dll
+C:\Users\Ander\Github\C#-Projects\Garage\Garage\obj\Debug\net10.0\Garage.sourcelink.json
