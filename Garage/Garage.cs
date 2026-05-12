@@ -35,6 +35,7 @@ namespace Garage
             Vehicles = new Vehicle[_arraySpots];
         }
 
+        // Denna metod lägger till 1 utav varje fordon i garaget om det finns mer än 8 platser lediga.
         public Vehicle[] AddSomeVehicles(Vehicle[] vehicles)
         {
             if(vehicles.Length > 8)
@@ -64,7 +65,8 @@ namespace Garage
             return vehicles;
         }
 
-
+        // Här lägger vi till ett nytt fordon i garaget, där den kollar efter en ledig plats.
+        // Om inga platser finns så kan man bygga ut garaget med en till plats.
         public Vehicle[] AddNewVehicle()
         {
             showMenu.VehicleMenu();
@@ -86,31 +88,63 @@ namespace Garage
                 }
                 else if(!Vehicles.Contains(null))
                 {
-                    _arraySpots++;
-                    Vehicle[] newVehicles = new Vehicle[_arraySpots];
-                    Array.Copy(Vehicles, newVehicles, Vehicles.Length);
-                    Vehicles = newVehicles;
-                    Vehicles[_arraySpots - 1] = ChooseVehicle(choice);
-                    Console.WriteLine("Vehicle added to spot " + (_arraySpots - 1));
-                    return Vehicles; 
+                    Console.WriteLine("No empty spots left!");
+                    Console.WriteLine("Do you want to expand the garage? (y/n)");
+                    input = Console.ReadLine();
+                    while (input != "y" && input != "n")
+                    {
+                        Console.WriteLine("Invalid input! Enter 'y' or 'n'");
+                        input = Console.ReadLine();
+                    }
+                    if(input == "n")
+                    {
+                        Console.WriteLine("Okay, will not expand the garage any further for now!");
+                        return Vehicles;
+                    }
+                    else if(input == "y")
+                    {
+                        Console.WriteLine("Expanding the garage");
+                        _arraySpots++;
+                        Vehicle[] newVehicles = new Vehicle[_arraySpots];
+                        Array.Copy(Vehicles, newVehicles, Vehicles.Length);
+                        Vehicles = newVehicles;
+                        Vehicles[_arraySpots - 1] = ChooseVehicle(choice);
+                        Console.WriteLine("Vehicle added to spot " + (_arraySpots - 1));
+                        return Vehicles; 
+                    }
                 }
             }
             return Vehicles;    
         }
 
+        // Denna metod tar bort ett fordon ur garaget genom att ange ett nummer mellan 1 till hur stort man gjorde garaget.
         public void RemoveVehicle()
         {
+            Console.WriteLine("Enter the spot number of the vehicle you want to remove. Between 1 and " + _arraySpots);
+            ShowVehicleSpots();
             string? removeVehicle = Console.ReadLine();
             if(int.TryParse(removeVehicle, out int result))
-                if(Vehicles[result] != null)
+                if(Vehicles[result - 1] != null)
                 {
-                    Vehicles[result] = null;
+                    Vehicles[result - 1] = null;
                     Console.WriteLine("Vehicle removed from spot " + result);                    
                 }
                 else
                     Console.WriteLine("The spot is already empty!");
         }
 
+        // Metoden loopar igenom Vehicles arrayen som visar vilka fordon som finns i garaget!
+        // Om platsen är tom så kommer de stå "Empty".
+        private void ShowVehicleSpots()
+        {
+            for (int i = 0; i < Vehicles.Length; i++)
+            {
+                Console.WriteLine($"Spot {i + 1}: {(Vehicles[i] != null ? Vehicles[i].ToString() : "Empty")}");
+            }
+        }
+
+        // Här loopar vi igenom Vehicles arrayen för att kolla hur många typer av fordon som finns i garaget.
+        // Samt så loopar vi ut alla parkerade fordon.
         public void ShowVehicles()
         {
             int car = 0, mc = 0, bus = 0, boat = 0, airplane = 0;
@@ -138,7 +172,9 @@ namespace Garage
             }
         }
 
-        public Vehicle[] NormalVehicleSearch(string search)
+        // Metoden tar in en söksträng som är ett registreringsnummer
+        // Och kollar igenom ifall det finns ett fordon med det registreringsnumret, man kan skriva stora och små bokstäver.
+        public Vehicle[] RegisterNumberVehicleSearch(string search)
         {           
             Vehicle[] searchResult = new Vehicle[_arraySpots];
             for (int i = 0; i < Vehicles.Length; i++)
@@ -147,7 +183,22 @@ namespace Garage
                 {
                     if(Vehicles[i].RegisterNumber.Contains(search, StringComparison.OrdinalIgnoreCase))
                         searchResult[i] = Vehicles[i];
-                    else if(Vehicles[i].ColourType.ToString().Contains(search, StringComparison.OrdinalIgnoreCase))
+                }
+            }
+                
+            return searchResult;
+        }
+
+        // Metoden tar in en söksträng som är en färg
+        // Och kollar igenom ifall det finns ett fordon med den angivna färgen, även här kan man skriva med stora och små bokstäver.
+        public Vehicle[] ColourVehicleSearch(string search)
+        {           
+            Vehicle[] searchResult = new Vehicle[_arraySpots];
+            for (int i = 0; i < Vehicles.Length; i++)
+            {
+                if(Vehicles[i] != null)
+                {
+                    if(Vehicles[i].ColourType.ToString().Contains(search, StringComparison.OrdinalIgnoreCase))
                         searchResult[i] = Vehicles[i];
                 }
             }
@@ -155,6 +206,9 @@ namespace Garage
             return searchResult;
         }
 
+        // Denna metod söker igenom Vehicles arrayen genom att man skriver in en vad man är ute efter t. ex "red cars"
+        // Då kollar den först vad för typ av object platsen i arrayen är sen om det finns en matching i detta fall "cars"
+        // Sen kollar den efter ytterligare egenskaper som matchar.
         public Vehicle[] AdvancedVehicleSearch(string search)
         {
             Vehicle[] searchResult = new Vehicle[_arraySpots];
@@ -227,7 +281,8 @@ namespace Garage
             }
             return searchResult;
         }
-
+        
+        // Här får vi upp sökmenyn som dirigerar oss vidare till 3 olika sök metoder.
         public void SearchVehicles()
         {
             Vehicle[] searchResults = new Vehicle[_arraySpots];
@@ -262,6 +317,7 @@ namespace Garage
             }
         }
 
+        // Skapar ett Car objekt
         private Car AddNewCar()
         {
             string regNmbr = RegisterNumber();
@@ -278,6 +334,7 @@ namespace Garage
             return car;
         }
 
+        // Skapar ett Motorcycle objekt
         private Motorcycle AddNewMc()
         {
             string regNmbr = RegisterNumber();
@@ -293,6 +350,8 @@ namespace Garage
             Motorcycle mc = new(regNmbr, colour, cylinder);
             return mc;
         }
+
+        // Skapar ett Boat objekt
         private Boat AddNewBoat()
         {
             string regNmbr = RegisterNumber();
@@ -309,6 +368,7 @@ namespace Garage
             return boat;
         }
 
+        // Skapar ett Bus objekt
         private Bus AddNewBus()
         {
             string regNmbr = RegisterNumber();
@@ -325,6 +385,7 @@ namespace Garage
             return bus;
         }
 
+        // Skapar ett Airplane objekt
         private Airplane AddNewAirPlane()
         {
             string regNmbr = RegisterNumber();
@@ -341,6 +402,7 @@ namespace Garage
             return airplane;
         }
 
+        // Här lägger vi till registreringsnumret för fordonet och kollar så det är i rätt format.
         private string RegisterNumber()
         {
             Console.WriteLine("Enter the registernumber for your veichle.");
@@ -353,6 +415,7 @@ namespace Garage
             return regNmbr;
         }
 
+        // Denna metod kollar ifall registreringsnumret är 6 tecken samt att det finns med 3 bokstäver och 3 siffror i rätt ordning.
         private bool CheckRegisterNumber(string regnumber)
         {
             if(regnumber.Length > 6 || regnumber.Length < 6)
@@ -379,9 +442,9 @@ namespace Garage
                     Console.WriteLine("Type in a registernumber! e.g., ABC123");
                     input = Console.ReadLine();
                 }
-                return NormalVehicleSearch(input);
+                return RegisterNumberVehicleSearch(input);
             }
-            else if(choice ==2)
+            else if(choice == 2)
             {
                 Console.WriteLine("Type in a colour");
                 input = Console.ReadLine();
@@ -390,9 +453,10 @@ namespace Garage
                     Console.WriteLine("Type in a colour e.g., red");
                     input = Console.ReadLine();
                 }
-                return NormalVehicleSearch(input);
+                return ColourVehicleSearch(input);
             }
             else
+            {
                 Console.WriteLine("Type in what you are searching for");
                 input = Console.ReadLine();
                 while (string.IsNullOrEmpty(input))
@@ -400,7 +464,8 @@ namespace Garage
                     Console.WriteLine("What are you searching for?");
                     input = Console.ReadLine();
                 }
-                return AdvancedVehicleSearch(input);
+                return AdvancedVehicleSearch(input);               
+            }
         }
 
         private ColourType Colour()
